@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Painel Admin | Amor Saúde</title>
+  <link rel="stylesheet" href="../css/admin-usuarios.css?v=20260526-login-city1" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css?v=20260526-search-baby1" rel="stylesheet">
+</head>
+<body data-protected-page="true" data-required-role="admin">
+  <header class="admin-topbar">
+    <a class="brand" href="home.html">
+      <img src="../assets/images/logo_funcionarios.png" alt="Amor Saúde Funcionários" />
+      <span>Painel Admin</span>
+    </a>
+    <nav>
+      <a class="admin-nav-link" href="home.html"><i class="fa-solid fa-house"></i> Home</a>
+      <a class="admin-nav-link" href="perfil.html"><i class="fa-regular fa-user"></i> Meu perfil</a>
+      <button class="admin-nav-link admin-logout" type="button" onclick="sairDaConta()"><i class="fa-solid fa-right-from-bracket"></i> Sair</button>
+    </nav>
+  </header>
+
+  <main class="admin-shell">
+    <section class="hero-admin">
+      <div>
+        <span class="eyebrow">Controle de acesso</span>
+        <h1>Usuários cadastrados</h1>
+        <p>Ative acessos, bloqueie contas e defina cargos sem abrir o console do Firebase toda hora.</p>
+      </div>
+      <div class="admin-stats">
+        <article>
+          <strong id="statTotal">0</strong>
+          <span>Total</span>
+        </article>
+        <article>
+          <strong id="statAtivos">0</strong>
+          <span>Ativos</span>
+        </article>
+        <article>
+          <strong id="statBloqueados">0</strong>
+          <span>Bloqueados</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="toolbar">
+      <label class="search-box">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input id="userSearch" type="search" placeholder="Buscar por nome ou e-mail" />
+      </label>
+      <button id="refreshUsers" class="refresh-users-btn" type="button"><i class="fa-solid fa-rotate"></i> Atualizar lista</button>
+    </section>
+
+    <p class="admin-message" id="adminMessage">Carregando usuários...</p>
+
+    <section class="users-grid" id="usersGrid"></section>
+  </main>
+
+  <template id="userCardTemplate">
+    <article class="user-card">
+      <div class="user-card-head">
+        <img class="avatar" src="../assets/images/mascote_hero.png" alt="Foto do usuário" />
+        <div>
+          <h3 data-name>Usuário</h3>
+          <p data-email>email</p>
+        </div>
+      </div>
+
+      <div class="field-row">
+        <label>Status</label>
+        <select data-active>
+          <option value="true">Ativo</option>
+          <option value="false">Bloqueado</option>
+        </select>
+      </div>
+
+      <div class="field-row">
+        <label>Nível de acesso</label>
+        <select data-role>
+          <option value="admin">Admin</option>
+          <option value="financeiro">Financeiro</option>
+          <option value="recepcao">Recepção</option>
+          <option value="medico">Médico</option>
+          <option value="colaborador">Colaborador</option>
+        </select>
+      </div>
+
+      <div class="field-row">
+        <label>Cidade da unidade</label>
+        <select data-city>
+          <option value="Embu das Artes">Embu das Artes</option>
+          <option value="Itapeva">Itapeva</option>
+          <option value="Tatui">Tatui</option>
+          <option value="Cerquilho">Cerquilho</option>
+        </select>
+      </div>
+
+      <div class="user-meta">
+        <span data-created>Cadastro: --</span>
+        <span data-last-login>Último login: --</span>
+      </div>
+
+      <button class="save-user" type="button"><i class="fa-solid fa-floppy-disk"></i> Salvar alterações</button>
+    </article>
+  </template>
+
+  <script type="module" src="../js/firebase-config.js?v=20260526-login-city1"></script>
+  <script type="module" src="../js/admin-usuarios.js?v=20260526-login-city1"></script>
+</body>
+</html>
